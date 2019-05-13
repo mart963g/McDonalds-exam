@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:h2:~/test;AUTO_SERVER=TRUE
+    username: test
+    password: test
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  mvc:
+    view:
+      prefix: /pages/
+      suffix: .jsp
