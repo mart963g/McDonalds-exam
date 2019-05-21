@@ -1,7 +1,10 @@
 package com.example.mcexam.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Drink {
@@ -12,6 +15,7 @@ public class Drink {
     private String name;
     private String size;
     private double price;
+
 
     public Drink() {
     }

@@ -1,6 +1,9 @@
 package com.example.mcexam.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Burger {
@@ -9,6 +12,7 @@ public class Burger {
     private Long id;
     private String name;
     private double price;
+
 
     public Burger()
     {    }
@@ -42,4 +46,5 @@ public class Burger {
     public void setPrice(double price) {
         this.price = price;
     }
+
 }

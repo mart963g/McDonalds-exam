@@ -1,9 +1,9 @@
 package com.example.mcexam.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Accessory {
@@ -14,6 +14,7 @@ public class Accessory {
     private String name;
     private String size;
     private double price;
+
 
     public Accessory() {
     }

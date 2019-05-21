@@ -3,9 +3,11 @@ package com.example.mcexam;
 import com.example.mcexam.model.Accessory;
 import com.example.mcexam.model.Burger;
 import com.example.mcexam.model.Drink;
+import com.example.mcexam.model.Menu;
 import com.example.mcexam.repository.AccessoryRepository;
 import com.example.mcexam.repository.BurgerRepository;
 import com.example.mcexam.repository.DrinkRepository;
+import com.example.mcexam.repository.MenuRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,9 +22,12 @@ public class McexamApplication {
 
     @Bean
     public CommandLineRunner fillTestData(BurgerRepository burgerRepository, DrinkRepository drinkRepository,
-                                          AccessoryRepository accessoryRepository)
+                                          AccessoryRepository accessoryRepository, MenuRepository menuRepository)
     {
         return (args) -> {
+            Burger bigMac = new Burger("BigMac",19.99);
+            Drink mCoke = new Drink("Coke","Medium",15.00);
+            Accessory fries = new Accessory("Fries","Medium",14.99);
             //Burgers
             burgerRepository.save(new Burger("BigMac",19.99));
             burgerRepository.save(new Burger("Cheeseburger",10.00));
@@ -34,9 +39,12 @@ public class McexamApplication {
             drinkRepository.save(new Drink("Strawberry Milkshake","Small",14.99));
 
             //Accessories
-            accessoryRepository.save(new Accessory("Fries","Small",14.99));
+            accessoryRepository.save(new Accessory("Fries","Medium",14.99));
             accessoryRepository.save(new Accessory("Curly fries","Big", 20.00));
             accessoryRepository.save(new Accessory("Chilli cheese tops","Big",24.99));
+
+            //Menus
+            menuRepository.save(new Menu("BigMac Menu","Medium",bigMac,mCoke,fries));
         };
     }
 
