@@ -1,56 +1,43 @@
 package com.example.mcexam.service;
 
 
+import com.example.mcexam.model.Burger;
 import com.example.mcexam.repository.BurgerRepository;
-import com.example.mcexam.repository.DrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
+
+import java.util.List;
 
 @Service
 public class BurgerService {
     @Autowired
     private BurgerRepository burgerRepository;
-    @Autowired
-    private DrinkRepository drinkRepository;
-
-/*
-    public List<Burger> findAll(String modelNr, Integer yearOlder) {
-        return findAllInner(modelNr, yearOlder);
-
-    }
 
 
-    private List<Burger> findAllInner(String modelNr, Integer yearOlder) {
-        if (StringUtils.isNotBlank(modelNr)) {
-            if (yearOlder != null) {
-                return burgerRepository.findCarByModelNrAndYearOlder(modelNr, yearOlder);
-            }
-            return burgerRepository.findByModelNrContainingIgnoreCase(modelNr);
-        }
+    public List<Burger> findAll() {
         return burgerRepository.findAll();
+
     }
 
     public Burger findOne(Long id) {
-      //  Burger burger = burgerRepository.findById(id)
-       //         .orElseThrow(this::badRequest);
-        //List<Drink> leases = drinkRepository.findByCar(burger);
-        //burger.setDrinks(leases);
+        Burger burger = burgerRepository.findById(id)
+                .orElseThrow(this::badRequest);
         return burger;
     }
 
-
-    public Burger save(Burger burger) {
-       // carValidator.validate(burger);
-        burger.setCreatedAt(LocalDateTime.now());
+    public Burger save(Burger burger)
+    {
         return burgerRepository.save(burger);
     }
+
     public Burger update(Burger burger, Long id) {
-       // carValidator.validate(burger);
         Burger dbBurger = findOne(id);
-        dbBurger.setModelNr(burger.getModelNr());
-        dbBurger.setRegistrationNr(burger.getRegistrationNr());
-        dbBurger.setYear(burger.getYear());
-        dbBurger.setUpdatedAt(LocalDateTime.now());
+        dbBurger.setName(burger.getName());
+        dbBurger.setPrice(burger.getPrice());
         return burgerRepository.save(dbBurger);
     }
     public void delete(Long id) {
@@ -58,5 +45,7 @@ public class BurgerService {
         burgerRepository.delete(dbBurger);
     }
 
-    */
+    private ResponseStatusException badRequest() {
+        return new ResponseStatusException(BAD_REQUEST, "Id doesn't exist");
+    }
 }

@@ -1,19 +1,39 @@
 package com.example.mcexam.controller;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.example.mcexam.model.Drink;
+import com.example.mcexam.service.DrinkService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
-import java.util.Arrays;
-@Controller
+
+@RestController
+@RequestMapping("/drink")
 public class DrinkController {
-    @GetMapping(value = "first")
-    public String first() {
-        return "pages/first.html";
+    @Autowired
+    private DrinkService drinkService;
+
+    @GetMapping
+    public List<Drink> findAll() {
+        return drinkService.findAll();
     }
 
-    @GetMapping(value = "second")
-    public String second(Model model) {
-        model.addAttribute("lists", Arrays.asList(1, 2, 3));
-        return "second";
+    @GetMapping("{id}")
+    public Drink findOne(@PathVariable Long id) {
+        return drinkService.findOne(id);
+    }
+
+    @PostMapping
+    public Drink save(@RequestBody Drink drink) {
+        return drinkService.save(drink);
+    }
+
+    @PutMapping("{id}")
+    public Drink update(@RequestBody Drink drink, @PathVariable Long id) {
+        return drinkService.update(drink, id);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        drinkService.delete(id);
     }
 }
