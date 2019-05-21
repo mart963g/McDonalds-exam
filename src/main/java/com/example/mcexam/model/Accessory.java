@@ -15,6 +15,9 @@ public class Accessory {
     private String size;
     private double price;
 
+    @OneToMany(mappedBy = "accessory")
+    @JsonIgnore
+    private Set<Menu> menus;
 
     public Accessory() {
     }

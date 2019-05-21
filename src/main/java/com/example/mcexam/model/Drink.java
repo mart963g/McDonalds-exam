@@ -16,6 +16,9 @@ public class Drink {
     private String size;
     private double price;
 
+    @OneToMany(mappedBy = "drink")
+    @JsonIgnore
+    private Set<Menu> menus;
 
     public Drink() {
     }

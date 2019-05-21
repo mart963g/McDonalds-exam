@@ -11,12 +11,14 @@ public class Menu
     private Long id;
     private String name;
     private String size;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @NotNull
     private Burger burger;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @NotNull
     private Drink drink;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @NotNull
     private Accessory accessory;
     private double price;
 
@@ -101,6 +103,6 @@ public class Menu
 
     public void setPrice(double price)
     {
-        price = price;
+        this.price = price;
     }
 }

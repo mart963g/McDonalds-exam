@@ -13,6 +13,10 @@ public class Burger {
     private String name;
     private double price;
 
+    @OneToMany(mappedBy = "burger")
+    @JsonIgnore
+    private Set<Menu> menus;
+
 
     public Burger()
     {    }

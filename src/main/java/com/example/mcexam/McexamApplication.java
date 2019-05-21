@@ -25,21 +25,18 @@ public class McexamApplication {
                                           AccessoryRepository accessoryRepository, MenuRepository menuRepository)
     {
         return (args) -> {
-            Burger bigMac = new Burger("BigMac",19.99);
-            Drink mCoke = new Drink("Coke","Medium",15.00);
-            Accessory fries = new Accessory("Fries","Medium",14.99);
             //Burgers
-            burgerRepository.save(new Burger("BigMac",19.99));
+            Burger bigMac = burgerRepository.save(new Burger("BigMac",19.99));
             burgerRepository.save(new Burger("Cheeseburger",10.00));
             burgerRepository.save(new Burger("McBacon",25.00));
 
             //Drinks
-            drinkRepository.save(new Drink("Coke","Medium",15.00));
+            Drink mCoke = drinkRepository.save(new Drink("Coke","Medium",15.00));
             drinkRepository.save(new Drink("Sprite","Large", 20.00));
             drinkRepository.save(new Drink("Strawberry Milkshake","Small",14.99));
 
             //Accessories
-            accessoryRepository.save(new Accessory("Fries","Medium",14.99));
+            Accessory fries = accessoryRepository.save(new Accessory("Fries","Medium",14.99));
             accessoryRepository.save(new Accessory("Curly fries","Big", 20.00));
             accessoryRepository.save(new Accessory("Chilli cheese tops","Big",24.99));
 
