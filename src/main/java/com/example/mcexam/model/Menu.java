@@ -20,20 +20,25 @@ public class Menu
     @ManyToOne(cascade = CascadeType.MERGE)
     @NotNull
     private Accessory accessory;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @NotNull
+    private Dessert dessert;
+
     private double price;
 
     public Menu()
     {
     }
 
-    public Menu(String name, String size, Burger burger, Drink drink, Accessory accessory)
+    public Menu(String name, String size, @NotNull Burger burger, @NotNull Drink drink, @NotNull Accessory accessory, @NotNull Dessert dessert)
     {
         this.name = name;
         this.size = size;
         this.burger = burger;
         this.drink = drink;
         this.accessory = accessory;
-        this.price = (burger.getPrice()+drink.getPrice()+accessory.getPrice())*0.75;
+        this.dessert = dessert;
+        this.price = (burger.getPrice()+drink.getPrice()+accessory.getPrice()+dessert.getPrice())*0.75;
     }
 
     public Long getId()
@@ -104,5 +109,15 @@ public class Menu
     public void setPrice(double price)
     {
         this.price = price;
+    }
+
+    public Dessert getDessert()
+    {
+        return dessert;
+    }
+
+    public void setDessert(Dessert dessert)
+    {
+        this.dessert = dessert;
     }
 }
